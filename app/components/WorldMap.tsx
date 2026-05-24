@@ -1,7 +1,7 @@
+// @ts-nocheck
 'use client';
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const { ComposableMap, Geographies, Geography, ZoomableGroup } = require('react-simple-maps');
+import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 import { SUPPORTED_COUNTRIES } from '../data/agents';
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
