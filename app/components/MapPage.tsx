@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import AgentPanel from './AgentPanel';
 import { AGENTS_BY_COUNTRY } from '../data/agents';
@@ -27,12 +28,14 @@ export default function MapPage() {
     <div className="flex flex-col h-screen bg-slate-50">
       {/* Header */}
       <header className="bg-white border-b border-slate-200 px-6 py-3 flex items-center gap-3 shrink-0">
-        <div className="w-7 h-7 bg-blue-500 rounded-lg flex items-center justify-center text-white text-sm font-bold">
-          S
-        </div>
-        <span className="font-semibold text-slate-800">StudyAgent</span>
+        <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <div className="w-7 h-7 bg-blue-500 rounded-lg flex items-center justify-center text-white text-sm font-bold">
+            S
+          </div>
+          <span className="font-semibold text-slate-800">StudyAgent</span>
+        </Link>
         <span className="text-slate-300 mx-1">|</span>
-        <span className="text-slate-500 text-sm">留学エージェント検索</span>
+        <span className="text-slate-500 text-sm">マップ検索</span>
         {selectedCountryName && (
           <>
             <span className="text-slate-300 mx-1">›</span>

@@ -162,3 +162,37 @@ export const SUPPORTED_COUNTRIES: Record<string, string> = {
   DEU: "ドイツ",
   MYS: "マレーシア",
 };
+
+export type Region = {
+  id: string;
+  name: string;
+  emoji: string;
+  countryCodes: string[];
+};
+
+export const REGIONS: Region[] = [
+  {
+    id: "oceania",
+    name: "オセアニア",
+    emoji: "🦘",
+    countryCodes: ["AUS", "NZL"],
+  },
+  {
+    id: "north-america",
+    name: "北米",
+    emoji: "🗽",
+    countryCodes: ["USA", "CAN"],
+  },
+  {
+    id: "europe",
+    name: "ヨーロッパ",
+    emoji: "🏰",
+    countryCodes: ["GBR", "IRL", "DEU"],
+  },
+  {
+    id: "asia",
+    name: "アジア",
+    emoji: "🌏",
+    countryCodes: ["MYS"],
+  },
+];
