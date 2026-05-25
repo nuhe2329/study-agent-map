@@ -1,18 +1,12 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
-import PriceFilter from './components/PriceFilter';
 
 const MODES = [
   { id: 'region', label: '地域別', emoji: '🌍', href: '/regions' },
-  { id: 'price',  label: '値段別', emoji: '💰', href: null },
+  { id: 'price',  label: '値段別', emoji: '💰', href: '/price' },
   { id: 'map',    label: 'マップ', emoji: '🗺️', href: '/map' },
-] as const;
+];
 
 export default function Home() {
-  const [activeMode, setActiveMode] = useState<string | null>(null);
-
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
@@ -40,51 +34,17 @@ export default function Home() {
 
         {/* 3 search buttons */}
         <div className="grid grid-cols-3 gap-3 w-full max-w-sm">
-          {MODES.map((m) => {
-            const isActive = activeMode === m.id;
-            const inner = (
-              <>
-                <span className="text-3xl mb-2">{m.emoji}</span>
-                <span className={`font-semibold text-sm ${isActive ? 'text-white' : 'text-slate-700'}`}>
-                  {m.label}
-                </span>
-              </>
-            );
-
-            if (m.href) {
-              return (
-                <Link
-                  key={m.id}
-                  href={m.href}
-                  className="flex flex-col items-center py-5 px-2 rounded-2xl border-2 border-green-200 bg-green-50 hover:bg-green-100 hover:border-green-400 transition-all hover:scale-[1.03] hover:shadow-md"
-                >
-                  {inner}
-                </Link>
-              );
-            }
-
-            return (
-              <button
-                key={m.id}
-                onClick={() => setActiveMode(isActive ? null : m.id)}
-                className={`flex flex-col items-center py-5 px-2 rounded-2xl border-2 transition-all hover:scale-[1.03] ${
-                  isActive
-                    ? 'border-green-500 bg-green-500 shadow-lg shadow-green-100'
-                    : 'border-green-200 bg-green-50 hover:bg-green-100 hover:border-green-400'
-                }`}
-              >
-                {inner}
-              </button>
-            );
-          })}
+          {MODES.map((m) => (
+            <Link
+              key={m.id}
+              href={m.href}
+              className="flex flex-col items-center py-5 px-2 rounded-2xl border-2 border-green-200 bg-green-50 hover:bg-green-100 hover:border-green-400 transition-all hover:scale-[1.03] hover:shadow-md"
+            >
+              <span className="text-3xl mb-2">{m.emoji}</span>
+              <span className="font-semibold text-sm text-slate-700">{m.label}</span>
+            </Link>
+          ))}
         </div>
-
-        {/* Price filter panel (値段別 selected) */}
-        {activeMode === 'price' && (
-          <div className="mt-5 w-full max-w-sm">
-            <PriceFilter />
-          </div>
-        )}
 
         {/* Stats */}
         <div className="mt-12 flex gap-10 text-center">
