@@ -1,11 +1,22 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import PriceFilter from './components/PriceFilter';
 
+const MODES = [
+  { id: 'region', label: '地域別', emoji: '🌍', href: '/regions' },
+  { id: 'price',  label: '値段別', emoji: '💰', href: null },
+  { id: 'map',    label: 'マップ', emoji: '🗺️', href: '/map' },
+] as const;
+
 export default function Home() {
+  const [activeMode, setActiveMode] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
-      <header className="px-8 py-5 flex items-center gap-3 border-b border-green-100">
+      <header className="px-6 py-4 flex items-center gap-3 border-b border-green-100">
         <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold">
           S
         </div>
@@ -14,7 +25,6 @@ export default function Home() {
 
       {/* Hero */}
       <main className="flex-1 flex flex-col items-center justify-center px-6 text-center">
-        {/* Green accent band */}
         <div className="w-16 h-1.5 bg-green-400 rounded-full mb-6" />
         <p className="text-green-600 text-sm font-medium tracking-widest uppercase mb-3">
           留学エージェントマッチング
@@ -28,46 +38,56 @@ export default function Home() {
           シンプルな検索でベストな留学をサポート。
         </p>
 
-        {/* Search mode cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-2xl">
-          <Link
-            href="/regions"
-            className="group bg-green-50 hover:bg-green-100 border border-green-200 hover:border-green-400 rounded-2xl p-6 text-left transition-all duration-200 hover:scale-[1.02] hover:shadow-md"
-          >
-            <div className="text-4xl mb-4">🌍</div>
-            <h2 className="text-slate-800 font-semibold text-lg mb-1">地域別で探す</h2>
-            <p className="text-slate-500 text-sm leading-relaxed">
-              オセアニア・北米・ヨーロッパ・アジアなど、
-              地域を選んで国を絞り込む。
-            </p>
-            <div className="mt-4 flex items-center gap-1 text-green-600 text-sm font-medium group-hover:gap-2 transition-all">
-              地域から探す <span>→</span>
-            </div>
-          </Link>
+        {/* 3 search buttons */}
+        <div className="grid grid-cols-3 gap-3 w-full max-w-sm">
+          {MODES.map((m) => {
+            const isActive = activeMode === m.id;
+            const inner = (
+              <>
+                <span className="text-3xl mb-2">{m.emoji}</span>
+                <span className={`font-semibold text-sm ${isActive ? 'text-white' : 'text-slate-700'}`}>
+                  {m.label}
+                </span>
+              </>
+            );
 
-          <Link
-            href="/map"
-            className="group bg-white hover:bg-green-50 border border-slate-200 hover:border-green-400 rounded-2xl p-6 text-left transition-all duration-200 hover:scale-[1.02] hover:shadow-md"
-          >
-            <div className="text-4xl mb-4">🗺️</div>
-            <h2 className="text-slate-800 font-semibold text-lg mb-1">マップで探す</h2>
-            <p className="text-slate-500 text-sm leading-relaxed">
-              インタラクティブな世界地図から
-              行きたい国をクリックして探す。
-            </p>
-            <div className="mt-4 flex items-center gap-1 text-green-600 text-sm font-medium group-hover:gap-2 transition-all">
-              マップを開く <span>→</span>
-            </div>
-          </Link>
+            if (m.href) {
+              return (
+                <Link
+                  key={m.id}
+                  href={m.href}
+                  className="flex flex-col items-center py-5 px-2 rounded-2xl border-2 border-green-200 bg-green-50 hover:bg-green-100 hover:border-green-400 transition-all hover:scale-[1.03] hover:shadow-md"
+                >
+                  {inner}
+                </Link>
+              );
+            }
+
+            return (
+              <button
+                key={m.id}
+                onClick={() => setActiveMode(isActive ? null : m.id)}
+                className={`flex flex-col items-center py-5 px-2 rounded-2xl border-2 transition-all hover:scale-[1.03] ${
+                  isActive
+                    ? 'border-green-500 bg-green-500 shadow-lg shadow-green-100'
+                    : 'border-green-200 bg-green-50 hover:bg-green-100 hover:border-green-400'
+                }`}
+              >
+                {inner}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Price filter */}
-        <div className="mt-10 w-full max-w-2xl">
-          <PriceFilter />
-        </div>
+        {/* Price filter panel (値段別 selected) */}
+        {activeMode === 'price' && (
+          <div className="mt-5 w-full max-w-sm">
+            <PriceFilter />
+          </div>
+        )}
 
         {/* Stats */}
-        <div className="mt-10 flex gap-10 text-center">
+        <div className="mt-12 flex gap-10 text-center">
           <div>
             <p className="text-green-500 text-2xl font-bold">8</p>
             <p className="text-slate-400 text-sm mt-0.5">対応国</p>
