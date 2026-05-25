@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import PriceFilter from './components/PriceFilter';
 
 export default function Home() {
   return (
@@ -60,8 +61,13 @@ export default function Home() {
           </Link>
         </div>
 
+        {/* Price filter */}
+        <div className="mt-10 w-full max-w-2xl">
+          <PriceFilter />
+        </div>
+
         {/* Stats */}
-        <div className="mt-14 flex gap-10 text-center">
+        <div className="mt-10 flex gap-10 text-center">
           <div>
             <p className="text-green-500 text-2xl font-bold">8</p>
             <p className="text-slate-400 text-sm mt-0.5">対応国</p>

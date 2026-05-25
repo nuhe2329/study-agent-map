@@ -170,6 +170,60 @@ export type Region = {
   countryCodes: string[];
 };
 
+export type PriceLevel = {
+  id: string;
+  level: number;       // 1〜4
+  label: string;       // "格安" など
+  yen: string;         // "¥" 〜 "¥¥¥¥"
+  budget: string;      // 月額目安
+  color: string;       // Tailwind color key
+  countryCodes: string[];
+  note: string;        // 一言コメント
+};
+
+export const PRICE_LEVELS: PriceLevel[] = [
+  {
+    id: "budget",
+    level: 1,
+    label: "格安",
+    yen: "¥",
+    budget: "月5〜10万円",
+    color: "emerald",
+    countryCodes: ["DEU", "MYS"],
+    note: "学費無料・物価安で留学コストを最小化",
+  },
+  {
+    id: "affordable",
+    level: 2,
+    label: "お手頃",
+    yen: "¥¥",
+    budget: "月10〜15万円",
+    color: "sky",
+    countryCodes: ["IRL", "NZL"],
+    note: "英語圏の中でコスパが高い人気の留学先",
+  },
+  {
+    id: "standard",
+    level: 3,
+    label: "標準",
+    yen: "¥¥¥",
+    budget: "月15〜20万円",
+    color: "amber",
+    countryCodes: ["AUS", "CAN"],
+    note: "充実した環境と安全性を両立した定番の留学先",
+  },
+  {
+    id: "premium",
+    level: 4,
+    label: "プレミアム",
+    yen: "¥¥¥¥",
+    budget: "月20万円〜",
+    color: "rose",
+    countryCodes: ["GBR", "USA"],
+    note: "世界トップ校が集中。キャリアへのインパクト大",
+  },
+];
+
 export const REGIONS: Region[] = [
   {
     id: "oceania",
