@@ -18,7 +18,7 @@ type Props = {
 
 export default function WorldMap({ selectedCountry, onCountrySelect }: Props) {
   return (
-    <div className="w-full h-full bg-slate-900 rounded-xl overflow-hidden">
+    <div className="w-full h-full bg-slate-900">
       <ComposableMap
         projection="geoNaturalEarth1"
         style={{ width: '100%', height: '100%' }}

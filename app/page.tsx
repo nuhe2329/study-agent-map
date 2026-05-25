@@ -18,11 +18,11 @@ export default function Home() {
         <p className="text-green-600 text-sm font-medium tracking-widest uppercase mb-3">
           留学エージェントマッチング
         </p>
-        <h1 className="text-slate-800 text-4xl md:text-5xl font-bold leading-tight mb-4">
+        <h1 className="text-slate-800 text-3xl md:text-5xl font-bold leading-tight mb-4">
           あなたにぴったりの<br />
           <span className="text-green-500">留学エージェント</span>を見つけよう
         </h1>
-        <p className="text-slate-500 text-lg mb-12 max-w-md">
+        <p className="text-slate-500 text-base md:text-lg mb-10 max-w-md">
           認知度は低くても、サービス品質が高いエージェントを厳選。
           シンプルな検索でベストな留学をサポート。
         </p>
