@@ -163,6 +163,45 @@ export const SUPPORTED_COUNTRIES: Record<string, string> = {
   MYS: "マレーシア",
 };
 
+export type Language = {
+  id: string;
+  name: string;
+  nativeName: string;
+  emoji: string;
+  countryCodes: string[];
+};
+
+export const LANGUAGES: Language[] = [
+  {
+    id: "english",
+    name: "英語",
+    nativeName: "English",
+    emoji: "🇬🇧",
+    countryCodes: ["AUS", "CAN", "GBR", "USA", "NZL", "IRL", "MYS"],
+  },
+  {
+    id: "german",
+    name: "ドイツ語",
+    nativeName: "Deutsch",
+    emoji: "🇩🇪",
+    countryCodes: ["DEU"],
+  },
+  {
+    id: "french",
+    name: "フランス語",
+    nativeName: "Français",
+    emoji: "🇫🇷",
+    countryCodes: ["CAN"],
+  },
+  {
+    id: "malay",
+    name: "マレー語",
+    nativeName: "Bahasa Melayu",
+    emoji: "🇲🇾",
+    countryCodes: ["MYS"],
+  },
+];
+
 export type Region = {
   id: string;
   name: string;

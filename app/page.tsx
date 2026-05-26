@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const MODES = [
-  { id: 'region', label: '地域別', emoji: '🌍', href: '/regions' },
+  { id: 'language', label: '言語別', emoji: '🌐', href: '/languages' },
   { id: 'price',  label: '値段別', emoji: '💰', href: '/price' },
   { id: 'map',    label: 'マップ', emoji: '🗺️', href: '/map' },
 ];
@@ -28,8 +28,8 @@ export default function Home() {
           <span className="text-green-500">留学エージェント</span>を見つけよう
         </h1>
         <p className="text-slate-500 text-base md:text-lg mb-10 max-w-md">
-          認知度は低くても、サービス品質が高いエージェントを厳選。
-          シンプルな検索でベストな留学をサポート。
+          これまでの分かりにくい留学とはおさらば👋<br />
+          これからの新しい留学の形がここに
         </p>
 
         {/* 3 search buttons */}
